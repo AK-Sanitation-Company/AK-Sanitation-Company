@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Presentation from "./Components/Presentation";
 import Contact from "./Components/Contact";
 import SlidesShow from "./Components/SlidesShow";
+
 import {
   Button,
   Col,
@@ -15,6 +16,7 @@ import {
   Row,
 } from "react-bootstrap";
 const axios = require("axios");
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -128,6 +130,7 @@ export default class App extends Component {
             backgroundColor: "black",
           }}>
           <span className="app-label" style={{ color: "red" }}>
+          
             <img
               src="https://png.pngtree.com/templates_detail/20180726/initial-k-letter-logo-with-swoosh-colored-red-and-black-png_27642.jpg"
               width="100px"
@@ -164,6 +167,12 @@ export default class App extends Component {
             onClick={() => this.handleChange("signUp")}>
             Sign up
           </span>
+            <a href="https://www.facebook.com/Miltec-Environnement-106219201264484/">
+            <Image 
+            style={{marginLeft:"1000px"}}
+            width="100px" 
+            src="https://kikourvite.fr/wp-content/uploads/2020/02/facebook-icon-white-logo-png-transparent-300x293-300x293-1.png" className="githubIcon" />
+            </a>
         </div>
 
         {this.state.view === "home" ? (
@@ -250,11 +259,13 @@ export default class App extends Component {
                 </Col>
               </Row>
             </Container>
-            {/* <h1> Services prices </h1>
-            <h3>PUMPING WORK</h3>
-            <h3>MAINTENANCE PIPING</h3> */}
-
-            <Container>
+            
+            <Container
+             style={{
+              backgroundColor: "black",
+              marginTop: "50px",
+              marginBottom: "50px",
+            }} >
               <Row>
                 <h1 style={{ margin: "20px", textAlign: "center" }}>
                   Reservation Box :{" "}
@@ -262,28 +273,28 @@ export default class App extends Component {
                 <Col md={{ span: 8, offset: 2 }}>
                   <Form>
                     <Form.Group controlId="formBasicEmail">
-                      <Form.Label>Name</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Name</Form.Label>
                       <Form.Control
                         name="name"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="name"
                         placeholder="Enter your name"
                       />
-                      <Form.Label>Adress</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Adress</Form.Label>
                       <Form.Control
                         name="adress"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="name"
                         placeholder="Enter your adress"
                       />
-                      <Form.Label>Email address</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Email address</Form.Label>
                       <Form.Control
                         name="email"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="email"
                         placeholder="Enter email"
                       />
-                      <Form.Label>Phone number</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Phone number</Form.Label>
                       <Form.Control
                         name="phoneNumber"
                         onChange={this.handleChangeReservation.bind(this)}
@@ -293,6 +304,7 @@ export default class App extends Component {
                     <InputGroup size="lg">
                       <InputGroup.Prepend>
                         <InputGroup.Text
+                          style={{ color: "black", fontSize: "20px" }}
                           name="message"
                           onChange={this.handleChangeReservation.bind(this)}
                           id="inputGroup-sizing-lg">
@@ -305,6 +317,7 @@ export default class App extends Component {
                       />
                     </InputGroup>
                     <Button
+                    style={{ backgroundColor: "red", fontSize: "20px" }}
                       onClick={this.handleSubmitClickRes}
                       variant="primary"
                       type="submit">
