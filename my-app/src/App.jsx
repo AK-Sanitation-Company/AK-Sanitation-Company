@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import UserSignIn from "./Components/UserSignIn";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import Footer from "./Components/Footer";
 import UserSignUp from "./Components/UserSignUp";
 import Presentation from "./Components/Presentation";
 import Services from "./Components/Services";
@@ -16,8 +14,20 @@ export default class App extends Component {
     super(props);
     this.state = {
       view: "home",
+      data : []
     };
     this.handleChange = this.handleChange.bind(this);
+    this. handleChangeSignUp=this. handleChangeSignUp.bind(this);
+  }
+
+   handleChangeSignUp(e) {
+    console.log(e.target.value);
+    const users = e.target.value
+     this.setState({
+     // data : users
+     })
+     console.log(this.state.data)
+    
   }
 
   handleChange(options) {
@@ -31,6 +41,16 @@ export default class App extends Component {
       // handle success
       console.log(response.data);
     });
+    // axios.post('/', {
+    //   name: 'Fred',
+    //   email: 'Flintstone'
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   }
 
   render() {
@@ -76,6 +96,13 @@ export default class App extends Component {
             onClick={() => this.handleChange("contact")}>
             Contact
           </span>
+          <span
+            className={
+              this.state.view === "signUp" ? "selected" : "unselected"
+            }
+            onClick={() => this.handleChange("signUp")}>
+            Sign up
+          </span>
         </div>
 
         {this.state.view === "home" ? (
@@ -90,8 +117,10 @@ export default class App extends Component {
           <Services />
         ) : this.state.view === "contact" ? (
           <Contact />
-        ) : null}
-      <Footer/>  
+        ) : this.state.view === "signUp" ? (
+          <UserSignUp handleChangeSignUp={this.handleChangeSignUp}/>):null
+        }
+      
       </div>
     );
   }
