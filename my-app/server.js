@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const MAIL_CONFIG = require('./SendEmail')
 const port = 5000
+const db = require('./database-mongodb/users.js')
 
 
 app.use(bodyParser.json())
@@ -28,7 +29,8 @@ app.get('/sendEmail', async(req, res) => {
 
 
 //Post request to Login
-app.post('/login', function(req, res, next) {
+app.post('/signIn', function(req, res, next) {
+  console.log(req.body)
   if (req.body.email && req.body.password) {
     Users.authenticate(req.body.email, req.body.password, function (error, user) {
       
@@ -47,22 +49,46 @@ app.post('/login', function(req, res, next) {
 
 //Post request to SignUp
 app.post('/signUp', (req, res) => {
-  let = name = req.body.name;
-  let = email = req.body.email;
-  let = phoneNumber = req.body.phoneNumber;
-  let = adress = req.body.adress;
- 
-  let newUsers = new Users({
+  let name = req.body.name;
+  let email = req.body.email;
+  let phoneNumber = req.body.phoneNumber;
+  let adress = req.body.adress;
+ console.log(req.body)
+  let newUsers = {
    name: name,
    email: email,
    phoneNumber: phoneNumber,
    adress: adress,
+  }
+  db.addUser(newUsers)
+  .then(res=>{
+    console.log(res)
   })
- newUsers.save().then((user) => {
-   res.send(user)
-  }).catch((err) => {
-   console.log(error)
+  .catch(err=>{console.log(err)})
+
+ })
+ //Post request to SignUp
+app.post('/reservation', (req, res) => {
+  let name = req.body.name;
+  let email = req.body.email;
+  let phoneNumber = req.body.phoneNumber;
+  let adress = req.body.adress;
+  let message = req.body.message;
+ console.log(req.body)
+ 
+ let newUsers = {
+   name: name,
+   email: email,
+   phoneNumber: phoneNumber,
+   adress: adress,
+   message: message
+  }
+  db.addUser(newUsers)
+  .then(res=>{
+    console.log(res)
   })
+  .catch(err=>{console.log(err)})
+
  })
 //Post to update the new Users
  app.post('/update/:id', (req, res) => {
@@ -81,35 +107,13 @@ app.post('/signUp', (req, res) => {
  })
 
  //Post to hash password in signUp
- app.post('/signUp',(req,res,next)=> {
-     const myPlaintextPassword = req.body.password
-     bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
-     });
- }),
+//  app.post('/signUp',(req,res,next)=> {
+//      const myPlaintextPassword = req.body.password
+//      bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+//      });
+//  }),
 
 
-
- //Post request to reservationBox
-app.post('/reservationBox', (req, res) => {
-  name = req.body.name,
-  email = req.body.email,
-  phoneNumber = req.body.phoneNumber,
-  adress = req.body.adress,
-  message = req.body.message
- 
-  let newUsers = new Users({
-   name: name,
-   email: email,
-   phoneNumber: phoneNumber,
-   adress: adress,
-   message: message,
-  })
- newUsers.save().then((user) => {
-   res.send(user)
-  }).catch((err) => {
-   console.log(error)
-  })
- })
 
 
 //Post to update the undefined Users
@@ -140,27 +144,27 @@ app.post('/reservationBox', (req, res) => {
 
 
 
-// exports.create = (req, res) => {
+exports.create = (req, res) => {
 
-//   const user = new User({
-//     email: req.body.email,
-//     name: req.body.name,
-//     adress: req.body.adress,
-//     message: req.body.message,
-//     phoneNumber: req.body.phoneNumber
-//   });
+  const user = new User({
+    email: req.body.email,
+    name: req.body.name,
+    adress: req.body.adress,
+    message: req.body.message,
+    phoneNumber: req.body.phoneNumber
+  });
   
-//   user
-//     .save()
-//     .then((data) => {
-//       res.send(data);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({
-//         message: err.message || "Some error occurred while creating the User.",
-//       });
-//     });
-// };
+  user
+    .save()
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Some error occurred while creating the User.",
+      });
+    });
+};
 
 
 
@@ -174,7 +178,7 @@ app.post('/reservationBox', (req, res) => {
 
 
 
-
+ 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })

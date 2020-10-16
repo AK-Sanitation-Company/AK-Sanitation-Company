@@ -51,6 +51,36 @@ export default class App extends Component {
   handleSubmitClick() {
     axios
       .post("/signUp", {
+        name: this.state.name,
+        adress: this.state.adress,
+        email: this.state.email,
+        phoneNumber: this.state.phoneNumber,
+        message: this.state.message,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  handleSubmitClickSignIn() {
+    axios
+      .post("/signIn", {
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then(function (response) {
+        alert('Hello in Our Company !');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  handleSubmitClickRes() {
+    axios
+      .post("/reservation", {
         name: this.state.reservation.name,
         adress: this.state.reservation.adress,
         email: this.state.reservation.email,
@@ -64,40 +94,9 @@ export default class App extends Component {
         console.log(error);
       });
   }
-  handleSubmitClickSignIn() {
-    axios
-      .post("/signIn", {
-        name: this.state.name,
-        password: this.state.password,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  handleSubmitClickRes() {
-    axios
-      .post("/reservation", {
-        name: this.state.name,
-        adress: this.state.adress,
-        email: this.state.email,
-        phoneNumber: this.state.phoneNumber,
-        password: this.state.password,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
   // handle signUp change function to get the signUp inputs value
   handleChangeSignUp = ({ target }) => {
     this.setState({ [target.name]: target.value });
-    console.log(this.state);
   };
   // handle reservation change function
   handleChangeReservation = ({ target }) => {
@@ -222,7 +221,7 @@ export default class App extends Component {
         ) : this.state.view === "services" ? (
           <div>
             <Container style={{ marginTop: "50px", marginBottom: "100px" }}>
-              <h1> Services prices </h1>
+              <h1> Services Prices : </h1>
               <br></br>
               <Row>
                 <Col xs={6} md={4}>
@@ -231,7 +230,7 @@ export default class App extends Component {
                     src="https://www.san-tunisie.com/wp-content/uploads/elementor/thumbs/icon1-1-o30rjz616qq5vrl1lvgw2al5o4t93n4vj2n07ggag8.png"
                     rounded
                   />
-                  <h5 style={{ marginLeft: "25px" }}>25 $ </h5>
+                  <h5 style={{ marginLeft: "25px" }}>15 $ </h5>
                 </Col>
                 <Col xs={6} md={4}>
                   <h4>VACUUM PIT AND CURVES</h4>
@@ -247,7 +246,7 @@ export default class App extends Component {
                     src="https://www.san-tunisie.com/wp-content/uploads/elementor/thumbs/icon3-1-o30rmfiv1634740p9xntkoahicpr76vn77ynbgta7c.png"
                     thumbnail
                   />
-                  <h5 style={{ marginLeft: "25px" }}>25 $ </h5>
+                  <h5 style={{ marginLeft: "25px" }}>10 $ </h5>
                 </Col>
               </Row>
             </Container>
@@ -258,7 +257,7 @@ export default class App extends Component {
             <Container>
               <Row>
                 <h1 style={{ margin: "20px", textAlign: "center" }}>
-                  Reservation box{" "}
+                  Reservation Box :{" "}
                 </h1>
                 <Col md={{ span: 8, offset: 2 }}>
                   <Form>
