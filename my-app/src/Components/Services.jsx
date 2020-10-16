@@ -12,6 +12,10 @@ export default class Services extends Component {
 
               <Col md={{ span: 8, offset: 2 }}>
               <h1> Services prices </h1>
+              <h3>PUMPING WORK</h3>
+              
+                <h3>MAINTENANCE PIPING</h3>
+                
              
                 <h1 style={{ margin: "20px", textAlign: "center" }}>
                   Reservation box {" "}
