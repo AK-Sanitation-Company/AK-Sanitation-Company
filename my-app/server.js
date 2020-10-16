@@ -31,7 +31,9 @@ app.get('/sendEmail', async(req, res) => {
 app.post('/login', function(req, res, next) {
   if (req.body.email && req.body.password) {
     Users.authenticate(req.body.email, req.body.password, function (error, user) {
+      
       if (error || !user) {
+        
         res.status(400).send("wrong email or password")
       }  else {
         res.json(user)
