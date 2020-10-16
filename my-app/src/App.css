@@ -1,3 +1,32 @@
 h1{
     color:rgb(0, 140, 255);
 }
+body {position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;}
+
+.nav-bar {
+    
+    margin: 0px;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: #F3F3F3;
+  }
+
+  
+  .selected {
+    padding: 5px;
+    color: white;
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 2em;
+  }
+  
+  .unselected {
+    padding: 5px;
+    margin-right: 5px;
+    font-size: 2em;
+  }
