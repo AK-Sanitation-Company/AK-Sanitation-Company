@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Presentation from "./Components/Presentation";
 import Contact from "./Components/Contact";
 import SlidesShow from "./Components/SlidesShow";
+
 import {
   Button,
   Col,
@@ -15,6 +16,7 @@ import {
   Row,
 } from "react-bootstrap";
 const axios = require("axios");
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +53,36 @@ export default class App extends Component {
   handleSubmitClick() {
     axios
       .post("/signUp", {
+        name: this.state.name,
+        adress: this.state.adress,
+        email: this.state.email,
+        phoneNumber: this.state.phoneNumber,
+        message: this.state.message,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  handleSubmitClickSignIn() {
+    axios
+      .post("/signIn", {
+        email: this.state.email,
+        password: this.state.password,
+      })
+      .then(function (response) {
+        alert('Hello in Our Company !');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
+  handleSubmitClickRes() {
+    axios
+      .post("/reservation", {
         name: this.state.reservation.name,
         adress: this.state.reservation.adress,
         email: this.state.reservation.email,
@@ -64,40 +96,9 @@ export default class App extends Component {
         console.log(error);
       });
   }
-  handleSubmitClickSignIn() {
-    axios
-      .post("/signIn", {
-        name: this.state.name,
-        password: this.state.password,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
-  handleSubmitClickRes() {
-    axios
-      .post("/reservation", {
-        name: this.state.name,
-        adress: this.state.adress,
-        email: this.state.email,
-        phoneNumber: this.state.phoneNumber,
-        password: this.state.password,
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
   // handle signUp change function to get the signUp inputs value
   handleChangeSignUp = ({ target }) => {
     this.setState({ [target.name]: target.value });
-    console.log(this.state);
   };
   // handle reservation change function
   handleChangeReservation = ({ target }) => {
@@ -129,6 +130,7 @@ export default class App extends Component {
             backgroundColor: "black",
           }}>
           <span className="app-label" style={{ color: "red" }}>
+          
             <img
               src="https://png.pngtree.com/templates_detail/20180726/initial-k-letter-logo-with-swoosh-colored-red-and-black-png_27642.jpg"
               width="100px"
@@ -165,6 +167,12 @@ export default class App extends Component {
             onClick={() => this.handleChange("signUp")}>
             Sign up
           </span>
+            <a href="https://www.facebook.com/Miltec-Environnement-106219201264484/">
+            <Image 
+            style={{marginLeft:"1000px"}}
+            width="100px" 
+            src="https://kikourvite.fr/wp-content/uploads/2020/02/facebook-icon-white-logo-png-transparent-300x293-300x293-1.png" className="githubIcon" />
+            </a>
         </div>
 
         {this.state.view === "home" ? (
@@ -222,7 +230,7 @@ export default class App extends Component {
         ) : this.state.view === "services" ? (
           <div>
             <Container style={{ marginTop: "50px", marginBottom: "100px" }}>
-              <h1> Services prices </h1>
+              <h1> Services Prices : </h1>
               <br></br>
               <Row>
                 <Col xs={6} md={4}>
@@ -231,7 +239,7 @@ export default class App extends Component {
                     src="https://www.san-tunisie.com/wp-content/uploads/elementor/thumbs/icon1-1-o30rjz616qq5vrl1lvgw2al5o4t93n4vj2n07ggag8.png"
                     rounded
                   />
-                  <h5 style={{ marginLeft: "25px" }}>25 $ </h5>
+                  <h5 style={{ marginLeft: "25px" }}>15 $ </h5>
                 </Col>
                 <Col xs={6} md={4}>
                   <h4>VACUUM PIT AND CURVES</h4>
@@ -247,44 +255,46 @@ export default class App extends Component {
                     src="https://www.san-tunisie.com/wp-content/uploads/elementor/thumbs/icon3-1-o30rmfiv1634740p9xntkoahicpr76vn77ynbgta7c.png"
                     thumbnail
                   />
-                  <h5 style={{ marginLeft: "25px" }}>25 $ </h5>
+                  <h5 style={{ marginLeft: "25px" }}>10 $ </h5>
                 </Col>
               </Row>
             </Container>
-            {/* <h1> Services prices </h1>
-            <h3>PUMPING WORK</h3>
-            <h3>MAINTENANCE PIPING</h3> */}
-
-            <Container>
+            
+            <Container
+             style={{
+              backgroundColor: "black",
+              marginTop: "50px",
+              marginBottom: "50px",
+            }} >
               <Row>
                 <h1 style={{ margin: "20px", textAlign: "center" }}>
-                  Reservation box{" "}
+                  Reservation Box :{" "}
                 </h1>
                 <Col md={{ span: 8, offset: 2 }}>
                   <Form>
                     <Form.Group controlId="formBasicEmail">
-                      <Form.Label>Name</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Name</Form.Label>
                       <Form.Control
                         name="name"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="name"
                         placeholder="Enter your name"
                       />
-                      <Form.Label>Adress</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Adress</Form.Label>
                       <Form.Control
                         name="adress"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="name"
                         placeholder="Enter your adress"
                       />
-                      <Form.Label>Email address</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Email address</Form.Label>
                       <Form.Control
                         name="email"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="email"
                         placeholder="Enter email"
                       />
-                      <Form.Label>Phone number</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Phone number</Form.Label>
                       <Form.Control
                         name="phoneNumber"
                         onChange={this.handleChangeReservation.bind(this)}
@@ -294,6 +304,7 @@ export default class App extends Component {
                     <InputGroup size="lg">
                       <InputGroup.Prepend>
                         <InputGroup.Text
+                          style={{ color: "black", fontSize: "20px" }}
                           name="message"
                           onChange={this.handleChangeReservation.bind(this)}
                           id="inputGroup-sizing-lg">
@@ -306,6 +317,7 @@ export default class App extends Component {
                       />
                     </InputGroup>
                     <Button
+                    style={{ backgroundColor: "red", fontSize: "20px" }}
                       onClick={this.handleSubmitClickRes}
                       variant="primary"
                       type="submit">

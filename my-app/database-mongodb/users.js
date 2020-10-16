@@ -39,3 +39,4 @@ var authenticate = (email, password, callback)=>{
 };
 
 module.exports.Users={getAllUsers,addUser,authenticate}
+module.exports.addUser = addUser
