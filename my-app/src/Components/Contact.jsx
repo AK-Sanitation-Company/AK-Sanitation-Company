@@ -4,7 +4,7 @@ class Contact extends Component {
   render() {
     
     const containerStyle = {
-      position: 'relative',  
+      position: 'fixed',  
       width: '100%',
       height: '100%'
     }
