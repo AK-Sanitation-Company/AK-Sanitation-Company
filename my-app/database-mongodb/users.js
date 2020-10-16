@@ -15,26 +15,27 @@ const UsersSchema = new mongoose.Schema({
   }
 );
 
+
 const Users = mongoose.model('users', UsersSchema);
+
 
 
 var getAllUsers = async() => {
     return await Users.find();
-}
+};
+
+
 
 var addUser = async( user)=>{
   return await Users.create(user);
-}
+};
 
 
 
 var authenticate = (email, password, callback)=>{
   Users.findOne({email:email,password:password},(err,user)=>{
-
     callback(err,user)
-
   })
-
-}
+};
 
 module.exports.Users={getAllUsers,addUser,authenticate}
