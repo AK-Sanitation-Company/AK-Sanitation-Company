@@ -11,7 +11,7 @@ class Contact extends Component {
       <div>
         <ListGroup style={{backgroundColor:"black"}} as="ul">
           <ListGroup.Item as="li" >
-            <h1> Contact us</h1>
+            <h1> Contact : us</h1>
           </ListGroup.Item>
           <ListGroup.Item as="li">
             <h2> Adress: Ariana Tunis </h2>
@@ -26,7 +26,7 @@ class Contact extends Component {
             <h2> Phone : +21654734755</h2>
           </ListGroup.Item>
           <ListGroup.Item as="li">
-            <h2> Email : amirabourogaa0@gmail.com </h2>
+            <h2> Email : amirabourogaa0@gmail.com / temimikais@gmail.com </h2>
           </ListGroup.Item>
         </ListGroup>
         <Map

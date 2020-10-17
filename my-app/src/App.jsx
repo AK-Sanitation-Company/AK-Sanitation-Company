@@ -77,17 +77,18 @@ export default class App extends Component {
       })
       .catch(function (error) {
         console.log(error);
+        alert('Ooooppsss !!!')
       });
   }
 
   handleSubmitClickRes() {
     axios
       .post("/reservation", {
-        name: this.state.reservation.name,
-        adress: this.state.reservation.adress,
-        email: this.state.reservation.email,
-        phoneNumber: this.state.reservation.phoneNumber,
-        message: this.state.reservation.message,
+        name: this.state.name,
+        adress: this.state.adress,
+        email: this.state.email,
+        phoneNumber: this.state.phoneNumber,
+        message: this.state.message,
       })
       .then(function (response) {
         console.log(response);
@@ -214,7 +215,7 @@ export default class App extends Component {
                       />
                     </Form.Group>
                     <Button
-                      style={{ backgroundColor: "red", fontSize: "20px" }}
+                      style={{ backgroundColor: "red", fontSize: "20px", marginLeft:"300px" }}
                       variant="primary"
                       type="submit"
                       onClick={this.handleSubmitClickSignIn}>
@@ -222,7 +223,7 @@ export default class App extends Component {
                     </Button>
                   </Form>
                 </Col>
-              </Row>
+              </Row><br></br>
             </Container>
           </div>
         ) : this.state.view === "presentation" ? (
@@ -315,9 +316,9 @@ export default class App extends Component {
                         aria-label="Large"
                         aria-describedby="inputGroup-sizing-sm"
                       />
-                    </InputGroup>
+                    </InputGroup><br></br>
                     <Button
-                    style={{ backgroundColor: "red", fontSize: "20px" }}
+                    style={{ backgroundColor: "red", fontSize: "20px", marginLeft:"300px" }}
                       onClick={this.handleSubmitClickRes}
                       variant="primary"
                       type="submit">
@@ -325,7 +326,7 @@ export default class App extends Component {
                     </Button>
                   </Form>
                 </Col>
-              </Row>
+              </Row><br></br>
             </Container>
           </div>
         ) : this.state.view === "contact" ? (
@@ -396,14 +397,14 @@ export default class App extends Component {
                       />
                     </Form.Group>
                     <Button
-                      style={{ backgroundColor: "red", fontSize: "20px" }}
+                      style={{ backgroundColor: "red", fontSize: "20px", marginLeft:"300px" }}
                       variant="primary"
                       onClick={this.handleSubmitClick}>
                       Sign up
                     </Button>
                   </Form>
                 </Col>
-              </Row>
+              </Row><br></br>
             </Container>
           </div>
         ) : null}
