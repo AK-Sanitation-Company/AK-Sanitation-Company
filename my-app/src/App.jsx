@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Presentation from "./Components/Presentation";
 import Contact from "./Components/Contact";
 import SlidesShow from "./Components/SlidesShow";
+
 import {
   Button,
   Col,
@@ -15,6 +16,7 @@ import {
   Row,
 } from "react-bootstrap";
 const axios = require("axios");
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -75,17 +77,18 @@ export default class App extends Component {
       })
       .catch(function (error) {
         console.log(error);
+        alert('Ooooppsss !!!')
       });
   }
 
   handleSubmitClickRes() {
     axios
       .post("/reservation", {
-        name: this.state.reservation.name,
-        adress: this.state.reservation.adress,
-        email: this.state.reservation.email,
-        phoneNumber: this.state.reservation.phoneNumber,
-        message: this.state.reservation.message,
+        name: this.state.name,
+        adress: this.state.adress,
+        email: this.state.email,
+        phoneNumber: this.state.phoneNumber,
+        message: this.state.message,
       })
       .then(function (response) {
         console.log(response);
@@ -128,6 +131,7 @@ export default class App extends Component {
             backgroundColor: "black",
           }}>
           <span className="app-label" style={{ color: "red" }}>
+          
             <img
               src="https://png.pngtree.com/templates_detail/20180726/initial-k-letter-logo-with-swoosh-colored-red-and-black-png_27642.jpg"
               width="100px"
@@ -164,6 +168,12 @@ export default class App extends Component {
             onClick={() => this.handleChange("signUp")}>
             Sign up
           </span>
+            <a href="https://www.facebook.com/Miltec-Environnement-106219201264484/">
+            <Image 
+            style={{marginLeft:"1000px"}}
+            width="100px" 
+            src="https://kikourvite.fr/wp-content/uploads/2020/02/facebook-icon-white-logo-png-transparent-300x293-300x293-1.png" className="githubIcon" />
+            </a>
         </div>
 
         {this.state.view === "home" ? (
@@ -205,7 +215,7 @@ export default class App extends Component {
                       />
                     </Form.Group>
                     <Button
-                      style={{ backgroundColor: "red", fontSize: "20px" }}
+                      style={{ backgroundColor: "red", fontSize: "20px", marginLeft:"300px" }}
                       variant="primary"
                       type="submit"
                       onClick={this.handleSubmitClickSignIn}>
@@ -213,7 +223,7 @@ export default class App extends Component {
                     </Button>
                   </Form>
                 </Col>
-              </Row>
+              </Row><br></br>
             </Container>
           </div>
         ) : this.state.view === "presentation" ? (
@@ -250,11 +260,13 @@ export default class App extends Component {
                 </Col>
               </Row>
             </Container>
-            {/* <h1> Services prices </h1>
-            <h3>PUMPING WORK</h3>
-            <h3>MAINTENANCE PIPING</h3> */}
-
-            <Container>
+            
+            <Container
+             style={{
+              backgroundColor: "black",
+              marginTop: "50px",
+              marginBottom: "50px",
+            }} >
               <Row>
                 <h1 style={{ margin: "20px", textAlign: "center" }}>
                   Reservation Box :{" "}
@@ -262,28 +274,28 @@ export default class App extends Component {
                 <Col md={{ span: 8, offset: 2 }}>
                   <Form>
                     <Form.Group controlId="formBasicEmail">
-                      <Form.Label>Name</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Name</Form.Label>
                       <Form.Control
                         name="name"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="name"
                         placeholder="Enter your name"
                       />
-                      <Form.Label>Adress</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Adress</Form.Label>
                       <Form.Control
                         name="adress"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="name"
                         placeholder="Enter your adress"
                       />
-                      <Form.Label>Email address</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Email address</Form.Label>
                       <Form.Control
                         name="email"
                         onChange={this.handleChangeReservation.bind(this)}
                         type="email"
                         placeholder="Enter email"
                       />
-                      <Form.Label>Phone number</Form.Label>
+                      <Form.Label style={{ color: "white", fontSize: "20px" }}>Phone number</Form.Label>
                       <Form.Control
                         name="phoneNumber"
                         onChange={this.handleChangeReservation.bind(this)}
@@ -293,6 +305,7 @@ export default class App extends Component {
                     <InputGroup size="lg">
                       <InputGroup.Prepend>
                         <InputGroup.Text
+                          style={{ color: "black", fontSize: "20px" }}
                           name="message"
                           onChange={this.handleChangeReservation.bind(this)}
                           id="inputGroup-sizing-lg">
@@ -303,8 +316,9 @@ export default class App extends Component {
                         aria-label="Large"
                         aria-describedby="inputGroup-sizing-sm"
                       />
-                    </InputGroup>
+                    </InputGroup><br></br>
                     <Button
+                    style={{ backgroundColor: "red", fontSize: "20px", marginLeft:"300px" }}
                       onClick={this.handleSubmitClickRes}
                       variant="primary"
                       type="submit">
@@ -312,7 +326,7 @@ export default class App extends Component {
                     </Button>
                   </Form>
                 </Col>
-              </Row>
+              </Row><br></br>
             </Container>
           </div>
         ) : this.state.view === "contact" ? (
@@ -383,14 +397,14 @@ export default class App extends Component {
                       />
                     </Form.Group>
                     <Button
-                      style={{ backgroundColor: "red", fontSize: "20px" }}
+                      style={{ backgroundColor: "red", fontSize: "20px", marginLeft:"300px" }}
                       variant="primary"
                       onClick={this.handleSubmitClick}>
                       Sign up
                     </Button>
                   </Form>
                 </Col>
-              </Row>
+              </Row><br></br>
             </Container>
           </div>
         ) : null}
